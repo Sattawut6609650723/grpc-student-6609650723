@@ -24,6 +24,33 @@ func (s *server) GetStudent(ctx context.Context, req *pb.StudentRequest) (*pb.St
 		Name:  "Alice Johnson",
 		Major: "Computer Science",
 		Email: "alice@university.com",
+		Phone: "088-888-8888",
+	}, nil
+}
+
+func (s *server) ListStudents(ctx context.Context, req *pb.Empty) (*pb.StudentListResponse, error) {
+	log.Println("Received request to list all students")
+
+	// Mock data
+	students := []*pb.StudentResponse{
+		{
+			Id:    1,
+			Name:  "Alice Johnson",
+			Major: "Computer Science",
+			Email: "alice@university.com",
+			Phone: "088-888-8888",
+		},
+		{
+			Id:    2,
+			Name:  "Bob Smith",
+			Major: "Mathematics",
+			Email: "bob@university.com",
+			Phone: "099-999-9999",
+		},
+	}
+
+	return &pb.StudentListResponse{
+		Student: students,
 	}, nil
 }
 

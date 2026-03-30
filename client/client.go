@@ -35,4 +35,15 @@ func main() {
 	log.Printf("Name: %s", res.Name)
 	log.Printf("Major: %s", res.Major)
 	log.Printf("Email: %s", res.Email)
+	log.Printf("Phone: %s", res.Phone)
+
+	listRes, err := client.ListStudents(ctx, &pb.Empty{})
+	if err != nil {
+		log.Fatalf("Error calling ListStudents: %v", err)
+	}
+
+	log.Println("List of Students:")
+	for _, student := range listRes.Student {
+		log.Printf("ID: %d, Name: %s, Major: %s, Email: %s, Phone: %s", student.Id, student.Name, student.Major, student.Email, student.Phone)
+	}
 }
